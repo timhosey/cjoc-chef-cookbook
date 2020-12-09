@@ -9,14 +9,18 @@ end
 # Updates apt
 apt_update 'update cjoc repo' do
   ignore_failure true
-  action :periodic
+  # action :periodic
   frequency 21600
 end
 
-# Checks APT for a version change and upgrades if needed.
-apt_package 'cloudbees-core-oc' do
+install_jenkins 'upgrade jenkins' do
   version node['cjoc']['target_version']
-  options ['--allow-downgrades', '--allow-change-held-packages']
-  action :upgrade
+  package 'cloudbees-core-oc'
 end
 
+# # Checks APT for a version change and upgrades if needed.
+# apt_package 'cloudbees-core-oc' do
+#   version node['cjoc']['target_version']
+#   options ['--allow-downgrades', '--allow-change-held-packages']
+#   action :upgrade
+# end

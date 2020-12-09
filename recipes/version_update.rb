@@ -17,5 +17,6 @@ end
 apt_package 'cloudbees-core-oc' do
   version node['cjoc']['target_version']
   options ['--allow-downgrades', '--allow-change-held-packages']
+  action :upgrade
 end
 

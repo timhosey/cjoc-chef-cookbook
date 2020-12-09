@@ -15,7 +15,7 @@ end
 
 # Checks APT for a version change and upgrades if needed.
 apt_package 'cloudbees-core-oc' do
-  action :upgrade
   version node['cjoc']['target_version']
+  options '--allow-downgrades'
 end
 

@@ -5,10 +5,10 @@ cookbook_file '/etc/default/cloudbees-core-oc' do
   group 'root'
   mode '0755'
   action :create
-  notifies :restart, 'service[jenkins]', :immediately
+  notifies :restart, 'service[cloudbees-core-oc]', :immediately
 end
 
 # Does nothing unless triggered by the copy
-service 'jenkins' do
+service 'cloudbees-core-oc' do
   action :nothing
 end

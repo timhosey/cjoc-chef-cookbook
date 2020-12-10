@@ -9,7 +9,7 @@ end
 # Updates apt
 apt_update 'update cjoc repo' do
   ignore_failure true
-  # action :periodic
+  action :periodic
   frequency 21600
 end
 

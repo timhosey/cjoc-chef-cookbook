@@ -12,4 +12,5 @@ end
 # Does nothing unless triggered by the copy
 service 'cloudbees-core-oc' do
   action :nothing
+  reload_command 'systemctl daemon-reload'
 end

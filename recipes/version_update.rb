@@ -17,10 +17,3 @@ cjoc_install_jenkins 'upgrade jenkins' do
   version node['cjoc']['target_version']
   package 'cloudbees-core-oc'
 end
-
-# # Checks APT for a version change and upgrades if needed.
-# apt_package 'cloudbees-core-oc' do
-#   version node['cjoc']['target_version']
-#   options ['--allow-downgrades', '--allow-change-held-packages']
-#   action :upgrade
-# end

@@ -4,8 +4,11 @@ property :version, String, required: true
 property :package, String, required: true
 
 action :install_jenkins do
-  installed_version = `dpkg -s cloudbees-core-oc | grep -i version | sed 's/[A-Za-z\:\s-]//g'`
-
+  installed_version = `dpkg -s cloudbees-core-oc | grep -i version | sed 's/[A-Za-z\:\s-]//g'`.strip.gsub(/\s+/, "")
+  log "installed version is #{installed_version}" do
+    level :warn
+  end
+  
   if installed_version != new_resource.version
     bash 'upgrade jenkins' do
       code <<-EOH

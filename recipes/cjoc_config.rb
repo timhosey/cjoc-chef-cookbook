@@ -5,6 +5,7 @@ cookbook_file '/etc/default/cloudbees-core-oc' do
   group 'root'
   mode '0755'
   action :create
+  notifies :reload, 'service[cloudbees-core-oc]', :immediately
   notifies :restart, 'service[cloudbees-core-oc]', :immediately
 end
 

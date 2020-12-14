@@ -1,6 +1,6 @@
 property :version, String, required: true
 property :plugin, String, required: true
-property :plugin_source, String, default: 'https://updates.jenkins.io/download/plugins/'
+property :plugin_source, String, required: true
 property :plugin_path, String, default: '/var/lib/cloudbees-core-oc/plugins'
 
 # /var/lib/cloudbees-core-oc/plugins

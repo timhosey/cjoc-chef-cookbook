@@ -6,9 +6,9 @@ plugins = {
 }
 
 plugins.each do |plugin_name, value|
-  cjoc_install_or_update_plugin "update/install #{plugin_name}" do
-    version ''
-    plugin plugin_name
-    plugin_source value['source']
+  cjoc_install_plugin "update/install #{plugin_name}" do
+    version '1.0'
+    plugin plugin_name.to_s
+    plugin_source value[:source]
   end
 end

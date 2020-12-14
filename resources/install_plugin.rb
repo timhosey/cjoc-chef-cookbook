@@ -5,7 +5,7 @@ property :plugin_path, String, default: '/var/lib/cloudbees-core-oc/plugins'
 
 # /var/lib/cloudbees-core-oc/plugins
 
-action :install_or_update_plugin do
+action :install_plugin do
   # Install gem into Chef
   chef_gem 'jenkins_api_client' do
     compile_time true
@@ -14,7 +14,9 @@ action :install_or_update_plugin do
   # Requiring YAML so I don't have to keep username/pass in git
   require 'yaml'
 
-  creds = YAML.load(File.read('jenkins_api.yml'))
+  # Workaround to test without putting creds on github
+  `test -f '/tmp/jenkins_api.yml'`
+  creds = $?.success? ? YAML.load(IO.read('/tmp/jenkins_api.yml')) : YAML.load(IO.read('jenkins_api.yml'))
 
   require 'jenkins_api_client'
   @client = JenkinsApi::Client.new(
@@ -27,7 +29,7 @@ action :install_or_update_plugin do
   if info.key?(new_resource.plugin)
     if info[new_resource.plugin] < new_resource.version
       # upgrade
-      puts "WE NEED TO UPGRADE!"
+      puts 'WE NEED TO UPGRADE!'
     end
   else
     # install

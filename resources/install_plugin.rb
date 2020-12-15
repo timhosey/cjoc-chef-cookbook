@@ -5,6 +5,8 @@ property :plugin_path, String, default: '/var/lib/cloudbees-core-oc/plugins'
 
 # /var/lib/cloudbees-core-oc/plugins
 
+jenkins = nil
+
 action :install_plugin do
   # Install gem into Chef
   chef_gem 'jenkins_api_client' do
@@ -19,31 +21,47 @@ action :install_plugin do
   creds = $?.success? ? YAML.load(IO.read('/tmp/jenkins_api.yml')) : YAML.load(IO.read('jenkins_api.yml'))
 
   require 'jenkins_api_client'
-  @client = JenkinsApi::Client.new(
+  jenkins = JenkinsApi::Client.new(
     server_url: creds['server'],
     username: creds['username'],
     password: creds['password']
   )
 
-  info = @client.plugin.list_installed
+  puts "\n*** PLUGIN INSTALL: Waiting for Jenkins API to be ready..."
+  jenkins.system.wait_for_ready
+
+  info = jenkins.plugin.list_installed
   if info.key?(new_resource.plugin)
     if info[new_resource.plugin] < new_resource.version
       # upgrade
-      puts 'WE NEED TO UPGRADE!'
+      puts "\n*** PLUGIN INSTALL: Upgrading plugin #{new_resource.plugin} to #{new_resource.version}"
+      remote_file "#{new_resource.plugin_path}/#{new_resource.plugin}.jpi" do
+        source "#{new_resource.plugin_source}"
+        owner 'root'
+        group 'root'
+        mode '0755'
+        action :create
+        notifies :run, 'ruby_block[restart Jenkins]', :delayed
+      end
     end
   else
     # install
-    remote_file new_resource.plugin_path do
+    puts "\n*** PLUGIN INSTALL: Installing new plugin #{new_resource.plugin} to #{new_resource.version}"
+    remote_file "#{new_resource.plugin_path}/#{new_resource.plugin}.jpi" do
       source "#{new_resource.plugin_source}"
       owner 'root'
       group 'root'
       mode '0755'
       action :create
+      notifies :run, 'ruby_block[restart Jenkins]', :delayed
     end
   end
-
-  # Wait until jobs finish to restart
-  if @client.plugin.restart_required?
-    @client.system.restart(false)
+  # Restart...
+  ruby_block 'restart Jenkins' do
+    block do
+      puts "\n*** PLUGIN INSTALL: Restarting Jenkins when all jobs have finished..."
+      jenkins.system.restart(false)
+    end
+    action :nothing
   end
 end

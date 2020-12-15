@@ -3,6 +3,10 @@ plugins = {
     'version': '1.2',
     'source': 'https://updates.jenkins.io/download/plugins/beer/1.2/beer.hpi',
   },
+  'cloudbees-folders-plus': {
+    'version': '3.6',
+    'source': 'https://jenkins-updates.cloudbees.com/download/plugins/cloudbees-folders-plus/3.6/cloudbees-folders-plus.hpi',
+  },
 }
 
 plugins.each do |plugin_name, value|

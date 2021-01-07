@@ -1,0 +1,13 @@
+jenkins:
+  systemMessage: "Jenkins configured using CasC."
+  numExecutors: 0
+  mode: NORMAL
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+       - id: admin
+         password: Qmas9pHXb9wpvp36FaAQ2SBN7XBxsG3h
+       - id: newuser
+         password: VzHAzoGzHeoq4JF797p8Mb7qL2Ycv54A
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl" 

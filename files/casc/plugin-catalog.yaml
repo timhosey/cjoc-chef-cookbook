@@ -1,0 +1,19 @@
+type: plugin-catalog
+version: '1' 
+name: java-catalog
+displayName: Java Master Catalog
+configurations:
+- description: java-builder
+  includePlugins:
+    artifactory:
+      version: 3.3.2
+    checkstyle:
+      version: 4.0.0
+    warnings-ng:
+      version: 5.3.0
+    my-custom-plugin:
+      url: http://www.example.org/jenkins-plugins/my-custom-plugin-1.2.3.hpi
+    cloudbees-casc-api: 
+      version: X.X 
+    manage-permission: 
+      version: Y.Y 

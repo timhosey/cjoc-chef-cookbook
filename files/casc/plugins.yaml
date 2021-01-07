@@ -1,0 +1,7 @@
+plugins:
+  - {id: "git"}
+  - {id: "maven-plugin"}
+  - {id: "configuration-as-code"}
+  - {id: "cloudbees-casc-api"}
+  - {id: "manage-permission"}
+  - {id: "nectar-rbac"}

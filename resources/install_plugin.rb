@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 property :version, String, required: true
 property :plugin, String, required: true
 property :plugin_source, String, required: true
@@ -18,7 +20,7 @@ action :install_plugin do
 
   # Workaround to test without putting creds on github
   `test -f '/tmp/jenkins_api.yml'`
-  creds = $?.success? ? YAML.load(IO.read('/tmp/jenkins_api.yml')) : YAML.load(IO.read('jenkins_api.yml'))
+  creds = $CHILD_STATUS.success? ? YAML.safe_load(IO.read('/tmp/jenkins_api.yml')) : YAML.safe_load(IO.read('jenkins_api.yml'))
 
   require 'jenkins_api_client'
   jenkins = JenkinsApi::Client.new(
@@ -36,7 +38,7 @@ action :install_plugin do
       # upgrade
       puts "\n*** PLUGIN INSTALL: Upgrading plugin #{new_resource.plugin} to #{new_resource.version}"
       remote_file "#{new_resource.plugin_path}/#{new_resource.plugin}.jpi" do
-        source "#{new_resource.plugin_source}"
+        source new_resource.plugin_source.to_s
         owner 'root'
         group 'root'
         mode '0755'
@@ -48,7 +50,7 @@ action :install_plugin do
     # install
     puts "\n*** PLUGIN INSTALL: Installing new plugin #{new_resource.plugin} to #{new_resource.version}"
     remote_file "#{new_resource.plugin_path}/#{new_resource.plugin}.jpi" do
-      source "#{new_resource.plugin_source}"
+      source new_resource.plugin_source.to_s
       owner 'root'
       group 'root'
       mode '0755'

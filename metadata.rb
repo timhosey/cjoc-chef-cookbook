@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 name 'cjoc'
 maintainer 'Tim Hosey'
 maintainer_email 'thosey@cloudbees.com'

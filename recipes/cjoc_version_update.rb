@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Makes sure the correct apt repo is setup
 apt_repository 'add cjoc repo' do
   uri 'https://downloads.cloudbees.com/cloudbees-core/traditional/client-master/rolling/debian'
@@ -10,7 +12,7 @@ end
 apt_update 'update cjoc repo' do
   ignore_failure true
   action :periodic
-  frequency 21600
+  frequency 21_600
 end
 
 cjoc_install_jenkins 'upgrade jenkins' do

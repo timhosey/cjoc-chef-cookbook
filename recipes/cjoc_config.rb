@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copy config file
 cookbook_file '/etc/default/cloudbees-core-oc' do
   source 'cloudbees-core-oc'

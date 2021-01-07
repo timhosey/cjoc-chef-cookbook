@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Chef-client attributes
 default['chef_client']['interval'] = 1800
 

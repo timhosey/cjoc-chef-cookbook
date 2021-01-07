@@ -1,4 +1,6 @@
-plugins.each do |plugin_name, value|
+# frozen_string_literal: true
+
+node['cjoc_plugins'].each do |plugin_name, value|
   cjoc_install_plugin "update/install #{plugin_name}" do
     version value[:version]
     plugin plugin_name.to_s

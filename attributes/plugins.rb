@@ -1,4 +1,6 @@
-plugins = {
+# frozen_string_literal: true
+
+default['cjoc_plugins'] = {
   'beer': {
     'version': '1.2',
     'source': 'https://updates.jenkins.io/download/plugins/beer/1.2/beer.hpi',

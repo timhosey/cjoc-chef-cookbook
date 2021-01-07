@@ -14,6 +14,6 @@ if node.name.include? 'cjoc'
   include_recipe '::cjoc_config'
   include_recipe '::cjoc_plugin_update'
 # Master specific recipes
-else
-  include_recipe '::'
+#else
+  #include_recipe '::'
 end

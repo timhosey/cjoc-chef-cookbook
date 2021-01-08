@@ -2,6 +2,7 @@ property :version, String, required: true
 property :plugin, String, required: true
 property :plugin_source, String, required: true
 property :plugin_path, String, default: '/var/lib/cloudbees-core-oc/plugins'
+property :restart, Bool, default: false
 
 # /var/lib/cloudbees-core-oc/plugins
 
@@ -59,8 +60,11 @@ action :install_plugin do
   # Restart...
   ruby_block 'restart Jenkins' do
     block do
-      puts "\n*** PLUGIN INSTALL: Restarting Jenkins when all jobs have finished..."
-      jenkins.system.restart(false)
+      if new_resource.restart
+        puts "\n*** PLUGIN INSTALL: Restarting Jenkins when all jobs have finished..."
+        jenkins.system.restart(false)
+      else
+        puts "\n*** PLUGIN INSTALL: Skipping restart on this plugin."
     end
     action :nothing
   end

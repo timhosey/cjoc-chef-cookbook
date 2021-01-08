@@ -2,7 +2,7 @@ property :version, String, required: true
 property :plugin, String, required: true
 property :plugin_source, String, required: true
 property :plugin_path, String, default: '/var/lib/cloudbees-core-oc/plugins'
-property :restart, [TrueClass, FalseClass], default: false
+property :restart, [true, false], default: false
 
 # /var/lib/cloudbees-core-oc/plugins
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # dpkg -s cloudbees-core-oc | grep -i version | sed 's/[A-Za-z\:\s-]//g'
 
 property :version, String, required: true

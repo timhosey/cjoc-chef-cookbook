@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 default['cjoc_plugins'] = {
   'beer': {
     'version': '1.2',

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 #
 # Cookbook:: cjoc
 # Recipe:: default
@@ -14,6 +12,8 @@ if node.name.include? 'cjoc'
   include_recipe '::cjoc_config'
   include_recipe '::cjoc_plugin_update'
 # Master specific recipes
-#else
-  #include_recipe '::'
+else
+  include_recipe '::mm_version_update'
+  include_recipe '::mm_config'
+  include_recipe '::mm_plugin_update'
 end

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 property :version, String, required: true
 property :plugin, String, required: true
 property :plugin_source, String, required: true

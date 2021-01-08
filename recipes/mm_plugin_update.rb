@@ -3,5 +3,6 @@ node['master_plugins'].each do |plugin_name, value|
     version value[:version]
     plugin plugin_name.to_s
     plugin_source value[:source]
+    plugin_path '/var/lib/cloudbees-core-cm/plugins'
   end
 end

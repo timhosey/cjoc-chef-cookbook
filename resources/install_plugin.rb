@@ -65,6 +65,7 @@ action :install_plugin do
         jenkins.system.restart(false)
       else
         puts "\n*** PLUGIN INSTALL: Skipping restart on this plugin."
+      end
     end
     action :nothing
   end

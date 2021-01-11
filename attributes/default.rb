@@ -5,4 +5,4 @@ default['chef_client']['interval'] = 1800
 default['cjoc']['target_version'] = '2.263.1.2'
 
 # CJMC Version
-default['cjmc']['target_version'] = '2.263.1.2'
+default['cjcm']['target_version'] = '2.263.1.2'

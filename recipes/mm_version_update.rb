@@ -14,6 +14,6 @@ apt_update 'update cjmc repo' do
 end
 
 cjoc_install_jenkins 'upgrade jenkins' do
-  version node['cjmc']['target_version']
+  version node['cjcm']['target_version']
   package 'cloudbees-core-cm'
 end

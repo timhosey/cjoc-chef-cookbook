@@ -18,8 +18,8 @@ end
 # Copy CasC files; make dir if it doesn't exist
 directory '/etc/cbci/casc' do
   action :create
-  owner 'root'
-  group 'root'
+  owner 'cloudbees-core-cm'
+  group 'cloudbees-core-cm'
   mode '0755'
   recursive true
 end
@@ -36,8 +36,8 @@ casc_files = [
 casc_files.each do |file|
   cookbook_file "/etc/cbci/casc/#{file}" do
     source "casc/#{file}"
-    owner 'root'
-    group 'root'
+    owner 'cloudbees-core-cm'
+    group 'cloudbees-core-cm'
     mode '0644'
     action :create
   end

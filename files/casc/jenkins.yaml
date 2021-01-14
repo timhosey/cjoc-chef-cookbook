@@ -124,7 +124,7 @@ unclassified:
   junitTestResultStorage:
     storage: "file"
   location:
-    adminAddress: "address not configured yet <nobody@nowhere>"
+    adminAddress: "Tim Hosey <thosey@cloudbees.com>"
     url: "http://35.223.34.189:8080/"
   mailer:
     charset: "UTF-8"

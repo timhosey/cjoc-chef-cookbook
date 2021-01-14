@@ -22,4 +22,5 @@ Berksfile.lock
 Policyfile.lock.json
 
 # Configuration yaml
-*_jenkins_api.yml
+cjcm_jenkins_api.yml
+cjoc_jenkins_api.yml

@@ -1,7 +1,3 @@
---- There are Beekeeper warnings. This makes the bundle export a "best effort".
---- Exported plugin catalog and plugins list might be incorrect and might need manual fixing before use.
---- Configuration as Code Plugin (configuration-as-code). Version 1.46 is currently installed but version 1.44 is recommended for this version of the product.
-
 type: plugin-catalog
 version: '1'
 name: 0-chef-client-master

@@ -33,9 +33,12 @@ action :install_plugin do
 
   info = jenkins.plugin.list_installed
   if info.key?(new_resource.plugin)
-    if info[new_resource.plugin] < new_resource.version
-      # upgrade
-      puts "\n*** PLUGIN INSTALL: Upgrading plugin #{new_resource.plugin} to #{new_resource.version}"
+    upgrade = info[new_resource.plugin] < new_resource.version
+    downgrade = info[new_resource.plugin] > new_resource.version
+    if upgrade || downgrade
+      # upgrade or downgrade
+      verb = upgrade ? 'Upgrading' : 'Downgrading'
+      puts "\n*** PLUGIN INSTALL: #{verb} plugin #{new_resource.plugin} to #{new_resource.version}"
       remote_file "#{new_resource.plugin_path}/#{new_resource.plugin}.jpi" do
         source new_resource.plugin_source.to_s
         owner 'root'

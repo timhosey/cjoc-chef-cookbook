@@ -36,8 +36,8 @@ casc_files = [
 casc_files.each do |file|
   cookbook_file "/var/lib/cloudbees-core-oc/jcasc-bundles-store/client-master/#{file}" do
     source "casc/#{file}"
-    owner 'cloudbees-core-cm'
-    group 'cloudbees-core-cm'
+    owner 'cloudbees-core-oc'
+    group 'cloudbees-core-oc'
     mode '0644'
     action :create
   end

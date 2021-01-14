@@ -14,3 +14,31 @@ service 'cloudbees-core-oc' do
   action :nothing
   reload_command 'systemctl daemon-reload'
 end
+
+# Copy CasC files; make dir if it doesn't exist
+directory '/var/lib/cloudbees-core-oc/jcasc-bundles-store/client-master' do
+  action :create
+  owner 'cloudbees-core-oc'
+  group 'cloudbees-core-oc'
+  mode '0755'
+  recursive true
+end
+
+casc_files = [
+  'bundle.yaml',
+  'items.yaml',
+  'jenkins.yaml',
+  'plugin-catalog.yaml',
+  'plugins.yaml',
+  'rbac.yaml',
+]
+
+casc_files.each do |file|
+  cookbook_file "/var/lib/cloudbees-core-oc/jcasc-bundles-store/client-master/#{file}" do
+    source "casc/#{file}"
+    owner 'cloudbees-core-cm'
+    group 'cloudbees-core-cm'
+    mode '0644'
+    action :create
+  end
+end

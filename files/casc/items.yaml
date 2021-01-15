@@ -1,0 +1,3 @@
+removeStrategy:
+ items: "none"
+ rbac: "sync"

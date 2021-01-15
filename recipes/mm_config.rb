@@ -24,6 +24,15 @@ directory '/etc/cbci/casc' do
   recursive true
 end
 
+# Copy the casc-bundle-link.yaml file
+cookbook_file '/var/lib/cloudbees-core-cm/casc-bundle-link.yaml' do
+  source 'casc/casc-bundle-link.yaml'
+  owner 'cloudbees-core-cm'
+  group 'cloudbees-core-cm'
+  mode '0644'
+  action :create
+end
+
 casc_files = [
   'bundle.yaml',
   'items.yaml',

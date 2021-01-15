@@ -5,7 +5,7 @@ NAME=cloudbees-core-cm
 # arguments to pass to java
 
 # Allow graphs etc. to work even when an X server is present
-JAVA_ARGS="-Djava.awt.headless=true -Dcore.casc.config.bundle=/var/lib/cloudbees-core-oc/jcasc-bundles-store/client-master"
+JAVA_ARGS="-Djava.awt.headless=true -Dcore.casc.config.bundle=/var/lib/cloudbees-core-cm/casc-bundle-link.yaml"
 
 #JAVA_ARGS="-Xmx256m"
 

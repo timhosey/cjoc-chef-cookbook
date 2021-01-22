@@ -24,6 +24,7 @@ directory '/var/lib/cloudbees-core-oc/jcasc-bundles-store/client-master' do
   recursive true
 end
 
+# Seems CasC requires all these files to be here and populated with something, empty files throw errors
 casc_files = [
   'bundle.yaml',
   'items.yaml',

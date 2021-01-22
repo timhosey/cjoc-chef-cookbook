@@ -8,8 +8,8 @@ default['cjoc_plugins'] = {
 default['master_plugins'] = {
   'beer': {
     'name': 'beer',
-    'version': '1.2',
-    'source': 'https://updates.jenkins.io/download/plugins/beer/1.2/beer.hpi',
+    'version': '1.1',
+    'source': 'https://updates.jenkins.io/download/plugins/beer/1.1/beer.hpi',
   },
   'configuration-as-code': {
     'name': 'configuration-as-code',

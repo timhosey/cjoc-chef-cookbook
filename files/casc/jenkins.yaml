@@ -12,6 +12,10 @@ jenkins:
         properties:
         - mailer:
             emailAddress: "thosey@cloudbees.com"
+  systemMessage: "Testing CasC again"
 unclassified:
   location:
     adminAddress: "Tim Hosey <thosey@cloudbees.com>"
+beekeeper:
+  upgrades:
+    autoUpgradePlugins: true

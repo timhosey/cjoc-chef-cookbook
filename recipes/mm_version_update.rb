@@ -1,7 +1,7 @@
 # Makes sure the correct apt repo is setup
-apt_repository 'repo' do
+apt_repository 'cjcm' do
   uri 'https://downloads.cloudbees.com/cloudbees-core/traditional/client-master/rolling/debian'
-  components ['binary']
+  distribution ['binary']
   action :add
   key 'https://downloads.cloudbees.com/cloudbees-core/traditional/operations-center/rolling/debian/cloudbees.com.key'
   deb_src true

@@ -13,6 +13,10 @@ apt_update 'update cjoc repo' do
   frequency 21600
 end
 
+package 'openjdk-8-jdk' do
+  action :install
+end
+
 cjoc_install_jenkins 'upgrade jenkins' do
   version node['cjoc']['target_version']
   package 'cloudbees-core-oc'

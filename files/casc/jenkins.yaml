@@ -17,5 +17,10 @@ unclassified:
   location:
     adminAddress: "Tim Hosey <thosey@cloudbees.com>"
 beekeeper:
+  enabled: true
+  securityWarnings:
+    enabledForCore: true
+    enabledForPlugins: true
   upgrades:
+    autoDowngradePlugins: false
     autoUpgradePlugins: true

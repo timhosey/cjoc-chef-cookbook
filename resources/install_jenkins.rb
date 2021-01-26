@@ -8,9 +8,11 @@ action :install_jenkins do
   installed_version = `dpkg -s #{new_resource.package} | grep -i version | sed 's/[A-Za-z\:\s-]//g'`.strip.gsub(/\s+/, '')
 
   if installed_version != new_resource.version
-    bash 'upgrade jenkins' do
+    bash 'install/upgrade jenkins' do
       code <<-EOH
+      apt-mark unhold #{new_resource.package}
       apt-get --assume-yes --allow-downgrades install #{new_resource.package}=#{new_resource.version}
+      apt-mark hold #{new_resource.package}
       EOH
       action :run
     end

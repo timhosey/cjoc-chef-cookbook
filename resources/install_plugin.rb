@@ -6,6 +6,7 @@ property :plugin_path, String, default: '/var/lib/cloudbees-core-oc/plugins'
 # /var/lib/cloudbees-core-oc/plugins
 
 jenkins = nil
+restart_jenkins = false
 
 action :install_plugin do
   begin
@@ -32,7 +33,7 @@ action :install_plugin do
     server_root = jenkins.get_root
     server_date = jenkins.get_server_date
 
-    puts "\n*** Server Info: Root [#{server_root}] / Date [#{server_date}]"
+    puts "\n*** Server Info: Root [#{server_root.message.to_s}] / Date [#{server_date}]"
 
     puts "\n*** PLUGIN INSTALL: Waiting for Jenkins API to be ready..."
     jenkins.system.wait_for_ready
@@ -53,6 +54,7 @@ action :install_plugin do
           action :create
           notifies :run, 'ruby_block[restart Jenkins]', :delayed
         end
+        restart_jenkins = true
       end
     else
       # install
